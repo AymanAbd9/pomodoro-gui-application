@@ -18,7 +18,7 @@ timer = None
 def reset_timer():
     global reps
     global checkmark_count
-    
+
     root.after_cancel(timer)
     reps = 0
     checkmark_count = 0
@@ -28,9 +28,9 @@ def reset_timer():
 
 # ---------------------------- TIMER MECHANISM ------------------------------- # 
 def start_timer():
-    work_min = 1 * 5
-    short_break_min = 1 * 5
-    long_break_min = 1 * 5
+    work_min = WORK_MIN * 60
+    short_break_min = SHORT_BREAK_MIN * 60
+    long_break_min = LONG_BREAK_MIN * 60
 
     global reps
     reps += 1
