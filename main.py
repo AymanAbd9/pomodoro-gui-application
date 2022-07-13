@@ -33,16 +33,19 @@ def start_timer():
 
     global reps
     reps += 1
+
+    # if its long break time
     if reps % 8 == 0:
         title_label.config(text='Break', fg=RED)
         count_down(long_break_min)
+    # if its work time
     elif reps % 2 != 0:
         title_label.config(text='Work', fg=GREEN)
         count_down(work_min)
+    # if its short break time
     else:
         title_label.config(text='Break', fg=PINK)
         count_down(short_break_min)
-
 
 # ---------------------------- COUNTDOWN MECHANISM ------------------------------- # 
 def count_down(count):
@@ -53,17 +56,21 @@ def count_down(count):
     count_min = math.floor(count / 60)
     count_sec = count % 60
 
+    # change the format of the minutes to two digits if its one digit
     if len(str(count_min)) == 1:
         count_min = "0" + str(count_min)
 
+    # change the format of the seconds to two digits if its one digit
     if len(str(count_sec)) == 1:
         count_sec = "0" + str(count_sec)
 
     canvas.itemconfig(timer_text, text=f'{count_min}:{count_sec}')
+
     if count > 0:
         timer = root.after(1000, count_down, count - 1)
     else:
         start_timer()
+        # if a work is done, add one checkmark
         if reps % 2 == 0:
             checkmark_count += 1
             check_label.config(text=checkmark_count * '✔')
